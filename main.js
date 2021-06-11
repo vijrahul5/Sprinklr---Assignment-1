@@ -47,7 +47,7 @@ function resizeTitle() {
     for (let i = 0; i < listElements.length; i++) {
         let title = listElements[i].title;
         let finalTitle = title;
-        const div = document.createElement("div"); // Line number 48 - 55, is used to calculate the width of our actual title on DOM
+        const div = document.createElement("div"); // Line number 48 - 58, is used to calculate the width of our actual title on DOM
         div.innerHTML = `${title}`;
         body.appendChild(div);
         div.style["width"] = "fit-content";
@@ -64,7 +64,7 @@ function resizeTitle() {
                 let M = Math.floor((L + U) / 2); // Here 'M ' is the number of characters to be used from the front/back
                 let newTitle =
                     title.slice(0, M) + "..." + title.slice(title.length - M);
-                const div = document.createElement("div"); // Line number 61 - 68, is used to calculate the width of the new title on DOM
+                const div = document.createElement("div"); // Line number 67 - 75, is used to calculate the width of the new title on DOM
                 div.innerHTML = `${newTitle}`;
                 body.appendChild(div);
                 div.style["width"] = "fit-content";
