@@ -47,7 +47,7 @@ function resizeTitle() {
     for (let i = 0; i < listElements.length; i++) {
         let title = listElements[i].title;
         let finalTitle = title;
-        const div = document.createElement("div"); // Line number 48 - 58, is used to calculate the width of our actual title on DOM
+        const div = document.createElement("div"); // Line number 50 - 58, is used to calculate the width of our actual title on DOM
         div.innerHTML = `${title}`;
         body.appendChild(div);
         div.style["width"] = "fit-content";
