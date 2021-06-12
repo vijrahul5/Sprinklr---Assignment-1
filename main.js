@@ -40,7 +40,7 @@ const listElements = document.querySelectorAll(".list-element"); // Storing all 
 
 
 function calculateWidth(title) { // This function is used to calculate the width of the title string on the DOM
-    let body = document.querySelector("body");
+    const body = document.querySelector("body");
     const div = document.createElement("div"); 
     div.innerHTML = `${title}`;
     body.appendChild(div);
@@ -58,7 +58,7 @@ function calculateWidth(title) { // This function is used to calculate the width
 function resizeTitle() {
     // Used to resize titles using binary search
     const listElementsText = document.querySelectorAll(".list-element-title");
-    let fullWidth =
+    const fullWidth =
         document.querySelector(".list-element-title").clientWidth + 1; // Calculates the intended width for the title text
     for (let i = 0; i < listElements.length; i++) {
         let title = listElements[i].title;
