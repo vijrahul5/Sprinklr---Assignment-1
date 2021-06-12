@@ -38,16 +38,20 @@ createList();
 
 const listElements = document.querySelectorAll(".list-element"); // Storing all the list elements
 
+function setStyle(div){ // Sets the font-size and font-family of the element passed
+    const list_element = document.querySelector(".list-element-title");
+    const style = getComputedStyle(list_element);
+    div.style["width"] = "fit-content";
+    div.style["font-size"] = style["font-size"];
+    div.style["fontFamily"] = style["fontFamily"];
+}
 
 function calculateWidth(title) { // This function is used to calculate the width of the title string on the DOM
     const body = document.querySelector("body");
     const div = document.createElement("div"); 
     div.innerHTML = `${title}`;
     body.appendChild(div);
-    div.style["width"] = "fit-content";
-    div.style["font-size"] = "1.75vh";
-    div.style["fontFamily"] =
-        "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
+    setStyle(div);
     let width = div.clientWidth + 1;
     body.removeChild(body.lastElementChild);
     return width;
