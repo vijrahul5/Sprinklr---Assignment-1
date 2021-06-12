@@ -2,7 +2,7 @@ import files from "./images.js"; // Importing all the image files
 
 let active; // Holds the index of current active list element
 const img = document.querySelector(".img-box img"); // Selecting img box and title so that it can be reset on certain events
-const img_title = document.querySelector(".img-title");
+const imgTitle = document.querySelector(".img-title");
 
 function createList() {
     // Initially creates all the list items and sets the first element as default
@@ -28,7 +28,7 @@ function createList() {
             // Setting first element as default active
             newListElement.classList.add("active");
             img.setAttribute("src", `${url}`);
-            img_title.innerHTML = `${title}`;
+            imgTitle.innerHTML = `${title}`;
             active = 0;
         }
         list.appendChild(newListElement);
@@ -38,30 +38,30 @@ createList();
 
 const listElements = document.querySelectorAll(".list-element"); // Storing all the list elements
 
-function setStyle(div){ // Sets the font-size and font-family of the element passed
-    const list_element = document.querySelector(".list-element-title");
-    const style = getComputedStyle(list_element);
+function setStyle(div) {
+    // Sets the font-size and font-family of the element passed
+    const listElementTitle = document.querySelector(".list-element-title");
+    const style = getComputedStyle(listElementTitle);
     div.style["width"] = "fit-content";
     div.style["font-size"] = style["font-size"];
     div.style["fontFamily"] = style["fontFamily"];
 }
 
-function calculateWidth(title) { // This function is used to calculate the width of the title string on the DOM
+function calculateWidth(title) {
+    // This function is used to calculate the width of the title string on the DOM
     const body = document.querySelector("body");
-    const div = document.createElement("div"); 
+    const div = document.createElement("div");
     div.innerHTML = `${title}`;
     body.appendChild(div);
     setStyle(div);
     let width = div.clientWidth + 1;
     body.removeChild(body.lastElementChild);
     return width;
-    
 }
-
 
 function resizeTitle() {
     // Used to resize titles using binary search
-    const listElementsText = document.querySelectorAll(".list-element-title");
+    const listElementTitles = document.querySelectorAll(".list-element-title");
     const fullWidth =
         document.querySelector(".list-element-title").clientWidth + 1; // Calculates the intended width for the title text
     for (let i = 0; i < listElements.length; i++) {
@@ -87,11 +87,10 @@ function resizeTitle() {
                 }
             }
         }
-        listElementsText[i].innerHTML = `${finalTitle}`;
+        listElementTitles[i].innerHTML = `${finalTitle}`;
     }
 }
 resizeTitle();
-
 
 function handleChange(index) {
     // Used to set another list element as active
@@ -99,7 +98,7 @@ function handleChange(index) {
         document.querySelector(".active").classList.remove("active");
         listElements[index].classList.add("active");
         img.setAttribute("src", `${listElements[index].getAttribute("url")}`);
-        img_title.innerHTML = `${listElements[index].getAttribute("title")}`;
+        imgTitle.innerHTML = `${listElements[index].getAttribute("title")}`;
         active = index;
     }
 }
