@@ -38,24 +38,11 @@ createList();
 
 const listElements = document.querySelectorAll(".list-element"); // Storing all the list elements
 
-function setStyle(div) {
-    // Sets the font-size and font-family of the element passed
-    const listElementTitle = document.querySelector(".list-element-title");
-    const style = getComputedStyle(listElementTitle);
-    div.style["width"] = "fit-content";
-    div.style["font-size"] = style["font-size"];
-    div.style["fontFamily"] = style["fontFamily"];
-}
-
-function calculateWidth(title) {
-    // This function is used to calculate the width of the title string on the DOM
-    const body = document.querySelector("body");
-    const div = document.createElement("div");
-    div.innerHTML = `${title}`;
-    body.appendChild(div);
-    setStyle(div);
-    let width = div.clientWidth + 1;
-    body.removeChild(body.lastElementChild);
+function calculateWidth(listElement, title) {
+    // Calculates the actual width of the title
+    const listElementTitle = listElement.querySelector(".list-element-title");
+    listElementTitle.innerHTML = `${title}`;
+    let width = listElementTitle.scrollWidth + 1;
     return width;
 }
 
@@ -65,10 +52,11 @@ function resizeTitle() {
     const fullWidth =
         document.querySelector(".list-element-title").clientWidth + 1; // Calculates the intended width for the title text
     for (let i = 0; i < listElements.length; i++) {
+        console.log(i);
         let title = listElements[i].title;
         let finalTitle = title;
-        let width = calculateWidth(title);
-        if (width + 10 > fullWidth) {
+        let width = calculateWidth(listElements[i], title);
+        if (width > fullWidth) {
             // If the title is overflowing, then we enter this block and make use of binary search to resize the title
             let L = 1,
                 U = Math.floor(title.length / 2);
@@ -76,8 +64,8 @@ function resizeTitle() {
                 let M = Math.floor((L + U) / 2); // Here 'M ' is the number of characters to be used from the front/back
                 let newTitle =
                     title.slice(0, M) + "..." + title.slice(title.length - M);
-                let width = calculateWidth(newTitle);
-                if (width + 10 <= fullWidth) {
+                let width = calculateWidth(listElements[i], newTitle);
+                if (width <= fullWidth) {
                     // If the new title fits, we set it as the best possible title till now
                     finalTitle = newTitle;
                     L = M + 1;
