@@ -52,7 +52,6 @@ function resizeTitle() {
     const fullWidth =
         document.querySelector(".list-element-title").clientWidth + 1; // Calculates the intended width for the title text
     for (let i = 0; i < listElements.length; i++) {
-        console.log(i);
         let title = listElements[i].title;
         let finalTitle = title;
         let width = calculateWidth(listElements[i], title);
